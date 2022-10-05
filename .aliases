@@ -1,0 +1,74 @@
+# Aliases - Config Files
+alias reload="source ~/.zshrc"
+alias zshrc="vim ~/.zshrc"
+alias vimrc="vim .vimrc"
+
+alias r="ranger"
+
+# Aliases - Folder
+alias h="cd ~"
+alias d="cd ~/Desktop"
+alias m="cd ~/Music/"
+alias p="cd ~/Pictures/"
+alias dn="cd ~/Downloads/"
+alias doc="cd ~/Documents"
+
+# surfraw elvi shortcuts
+alias yt="sr youtube"
+alias google="sr google"
+alias urban="sr urban"
+alias am="sr amazon"
+alias amazon="sr amazon"
+alias translate="sr translate"
+alias rt="sr rotten"
+alias rotten="sr rotten"
+
+# command Aliases
+
+# copy/paste for linux machines (Mac style)
+alias pbcopy='xclip -selection clipboard'	# copy to clipboard, ctrl+c, ctrl+shift+c
+alias pbpaste='xclip -selection clipboard -o'	# paste from clipboard, ctrl+v, ctrl+shift+v
+alias pbselect='xclip -selection primary -o'	# paste from highlight, middle click, shift+insert
+
+# ============================================================================
+
+# fzf search - Depends on Computer
+# ns() {find /mnt/c/Users/kibrahim/Desktop/hw/* -type f | fzf | xargs -o vim;}
+
+# fd - cd to selected folder
+s-cd-dir(){
+	DIR=$(find ${1:-.} -type d 2> /dev/null | fzf) && cd "$DIR"
+}
+
+# fvim - open selected file with vim
+s-file(){
+		FILE=$(fzf) && vim "$FILE"
+}
+
+# open pdf files
+fpdf(){
+	mupdf "$(locate -i .pdf | fzf)"
+}
+
+
+# image search - Linux
+s-img() {
+#preview "$( locate -i .jpg .png .jpeg |fzf )"
+feh "$(find . -type f -regex "^.*\.\(png\|jpg\|jpeg\)$" |fzf)"
+}
+
+
+# open mpv files
+s-mp4(){
+	mpv "$(locate -i .mp4 | fzf)"
+}
+
+# search All files=====
+s-all(){
+		open "$(find ~/Desktop/ -type f -iname '*.*' | fzf)"
+}
+
+# search All files and open with vscode=====
+s-code-all(){
+		code "$(find ~/Desktop/ -type f -iname '*.*' | fzf)"
+}
